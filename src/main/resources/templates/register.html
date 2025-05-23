@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background: #fff;
+      max-width: 370px;
+      margin: 60px auto;
+      padding: 32px 28px 24px 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    h1 {
+      text-align: center;
+      color: #2d3e50;
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #34495e;
+      font-size: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 15px;
+      background: #f9fafb;
+      transition: border 0.2s;
+    }
+    input:focus, select:focus {
+      border-color: #4f8cff;
+      outline: none;
+    }
+    button {
+      width: 100%;
+      padding: 10px 0;
+      background: #4f8cff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+    .message {
+      color: #2563eb;
+      background: #eaf6ff;
+      border: 1px solid #b6e0fe;
+      padding: 8px 12px;
+      border-radius: 5px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .links {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+    .links a {
+      color: #4f8cff;
+      text-decoration: none;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Register</h1>
+    <form th:action="@{/register}" method="post">
+      <label>User Type:</label>
+      <select name="userType">
+        <option>Patient</option>
+        <option>Doctor</option>
+      </select>
+      <label>Name:</label>
+      <input type="text" name="name" required/>
+      <label>Gmail:</label>
+      <input type="email" name="gmail" required/>
+      <label>Password:</label>
+      <input type="password" name="password" required/>
+      <label>Doctor ID:</label>
+      <input type="text" name="doctorId" placeholder="Only for Doctor"/>
+      <button type="submit">Register</button>
+    </form>
+    <div th:if="${message}" class="message"><p>[[${message}]]</p></div>
+    <div class="links">
+      <a th:href="@{/}">Back to Login</a>
+    </div>
+  </div>
+</body>
+</html>

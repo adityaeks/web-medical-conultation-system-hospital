@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background: #fff;
+      max-width: 350px;
+      margin: 60px auto;
+      padding: 32px 28px 24px 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    h1 {
+      text-align: center;
+      color: #2d3e50;
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #34495e;
+      font-size: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 15px;
+      background: #f9fafb;
+      transition: border 0.2s;
+    }
+    input:focus, select:focus {
+      border-color: #4f8cff;
+      outline: none;
+    }
+    button {
+      width: 100%;
+      padding: 10px 0;
+      background: #4f8cff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+    .links {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+    .links a {
+      color: #4f8cff;
+      text-decoration: none;
+      margin: 0 6px;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+    .error {
+      color: #e74c3c;
+      background: #fdecea;
+      border: 1px solid #f5c6cb;
+      padding: 8px 12px;
+      border-radius: 5px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Medical Consultation System</h1>
+    <div th:if="${error}" class="error">[[${error}]]</div>
+    <form th:action="@{/login}" method="post">
+      <label>User Type:</label>
+      <select name="userType">
+        <option>Admin</option>
+        <option>Patient</option>
+        <option>Doctor</option>
+      </select>
+      <label>Name:</label>
+      <input type="text" name="name" required/>
+      <label>Password:</label>
+      <input type="password" name="password" required/>
+      <button type="submit">Login</button>
+    </form>
+    <div class="links">
+      <a th:href="@{/register}">Register</a> | <a th:href="@{/reset-password}">Reset Password</a>
+    </div>
+  </div>
+</body>
+</html>

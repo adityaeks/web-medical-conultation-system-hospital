@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fix Bug</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .fix-bug-container {
+            background: #fff;
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 32px 24px 24px 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            text-align: center;
+        }
+        h2 {
+            color: #2563eb;
+            margin-bottom: 18px;
+        }
+        .ok-btn {
+            margin-top: 28px;
+            padding: 10px 32px;
+            background: #4f8cff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .ok-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="fix-bug-container">
+        <h2 th:text="${adminName} + ' sedang melakukan fix bugs'">Admin sedang melakukan fix bugs</h2>
+        <form th:action="@{/dashboard}" method="get">
+            <button type="submit" class="ok-btn">OK</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Schedule</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        
+        .header h1 {
+            color: #2563eb;
+            margin: 0;
+            font-size: 1.8em;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.07);
+            transition: all 0.2s;
+        }
+        
+        .back-link:hover {
+            background: #2563eb;
+            color: #fff;
+        }
+        
+        .schedule-table {
+            width: 100%;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08);
+            border-collapse: collapse;
+            overflow: hidden;
+        }
+        
+        .schedule-table th {
+            background: #2563eb;
+            color: #fff;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .schedule-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .schedule-table tr:hover {
+            background: #f8fafc;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 48px;
+            color: #64748b;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08);
+        }
+        
+        .empty-state i {
+            font-size: 3em;
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+        
+        @media (max-width: 700px) {
+            .container {
+                padding: 16px;
+            }
+            .header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+            .schedule-table {
+                display: block;
+                overflow-x: auto;
+            }
+            .schedule-table th,
+            .schedule-table td {
+                padding: 12px;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fa-solid fa-calendar-check"></i> Scheduled Consultations</h1>
+            <a th:href="@{/dashboard}" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+
+        <div th:if="${consultations.empty}" class="empty-state">
+            <i class="fa-solid fa-calendar-xmark"></i>
+            <h2>No Scheduled Consultations</h2>
+            <p>You don't have any scheduled consultations at the moment.</p>
+        </div>
+
+        <table th:unless="${consultations.empty}" class="schedule-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Disease</th>
+                    <th>Symptoms</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${consultations}">
+                    <td th:text="${c.id}">1</td>
+                    <td th:text="${c.patient.name}">Patient</td>
+                    <td th:text="${c.disease}">Disease</td>
+                    <td th:text="${c.symptoms}">Symptoms</td>
+                    <td th:text="${c.date}">2025-05-21</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
